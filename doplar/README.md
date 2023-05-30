@@ -1,14 +1,8 @@
 # Doplar prototype
 
-This repository implements a prototype of Doplar, a VDAF designed and analyzed
-in a [paper presented at PETS 2023](https://eprint.iacr.org/2023/130). Doplar
-is fullfills the same use case as Poplar1 (one of the algorithms in the
-[current version of the
-standard](https://datatracker.ietf.org/doc/draft-irtf-cfrg-vdaf/03/)), but has
-reduced round complexity (at the cost of higher overall communication cost).
-
-The code is written in Rust. Our starting point is the `prio` crate maintained
-by the ISRG ("Internet Security Research Group",
+This crate implements a prototype of Doplar and benchmarks for Doplar and
+Poplar`. The code is written in Rust. Our starting point is the `prio` crate
+maintained by the ISRG ("Internet Security Research Group",
 https://www.abetterinternet.org/), which includes Rust implementations of the
 current crop of VDAF candidates (Prio3 and Poplar1). We will work from the
 current development branch, which at the time of writing is:
