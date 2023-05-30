@@ -72,3 +72,13 @@ gt checkout 0d3db3b5b62005a2fb28b40237ffd0f888399b62
 patch -u src/idpf.rs -i <PATH_TO_DOPLAR>/upstream.patch # should succeed
 diff -u src/idpf.rs <PATH_TO_DOPLAR>/src/upstream/mod.rs # should be empty
 ```
+
+## Contributing
+
+This repository includes code that was copied from the original `prio` crate
+and retains the license of that crate (see `src/upstream/LICENSE`). All other
+code will be distributed under the standard BSD 3-clause license (see
+`LICENSE`).
+
+This code is intended primarily as a prototype and is not expected to be
+maintained long-term.
