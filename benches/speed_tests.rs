@@ -22,12 +22,13 @@ use std::{iter, time::Duration};
 const SIZE_MIN: usize = 32;
 const SIZE_MAX: usize = 512 + SIZE_STEP;
 const SIZE_STEP: usize = 32;
+const MEASUREMENT_TIME: Duration = Duration::from_secs(30);
 
 pub fn shard(c: &mut Criterion) {
     let mut group = c.benchmark_group("doplar_shard");
     for size in (SIZE_MIN..SIZE_MAX).step_by(SIZE_STEP) {
         group.throughput(Throughput::Bytes(size as u64 / 8));
-        group.measurement_time(Duration::from_secs(30)); // slower benchmark
+        group.measurement_time(MEASUREMENT_TIME); // slower benchmark
         group.bench_with_input(BenchmarkId::from_parameter(size), &size, |b, &size| {
             let vdaf = Doplar::new_aes128(size);
             let mut rng = thread_rng();
@@ -52,7 +53,7 @@ pub fn shard(c: &mut Criterion) {
     let mut group = c.benchmark_group("poplar1_shard");
     for size in (SIZE_MIN..SIZE_MAX).step_by(SIZE_STEP) {
         group.throughput(Throughput::Bytes(size as u64 / 8));
-        group.measurement_time(Duration::from_secs(30)); // slower benchmark
+        group.measurement_time(MEASUREMENT_TIME); // slower benchmark
         group.bench_with_input(BenchmarkId::from_parameter(size), &size, |b, &size| {
             let vdaf = Poplar1::new_aes128(size);
             let mut rng = thread_rng();
@@ -112,7 +113,7 @@ pub fn prep(c: &mut Criterion) {
     for test_case in test_cases.iter() {
         let size = test_case.size;
 
-        group.measurement_time(Duration::from_secs(30)); // slower benchmark
+        group.measurement_time(MEASUREMENT_TIME); // slower benchmark
         group.bench_with_input(BenchmarkId::from_parameter(size), &size, |b, &size| {
             let vdaf = Doplar::new_aes128(size);
 
@@ -161,7 +162,7 @@ pub fn prep(c: &mut Criterion) {
     for test_case in test_cases.iter() {
         let size = test_case.size;
 
-        group.measurement_time(Duration::from_secs(30)); // slower benchmark
+        group.measurement_time(MEASUREMENT_TIME); // slower benchmark
         group.bench_with_input(BenchmarkId::from_parameter(size), &size, |b, &size| {
             let vdaf = Poplar1::new_aes128(size);
 
